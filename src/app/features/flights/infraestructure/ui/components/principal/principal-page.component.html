@@ -1,0 +1,143 @@
+<div class="banner-container">
+  <img
+    src="../../../../../../../assets/banner-agencia-vacaciones-viajes-resort-reserva-boletos-avion-o-aventura-playa-verano_101884-1536.webp"
+    alt=""
+  />
+</div>
+<div class="content-element">
+  <p>
+    <button
+      type="button"
+      class="btn btn-outline-primary content-element__button"
+      (click)="collapse.toggle()"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample"
+    >
+      Esconder información
+    </button>
+  </p>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card content-element__container">
+      <form
+        class="row row-cols-sm-auto"
+        [formGroup]="flightsForm"
+        (ngSubmit)="searchFlights()"
+      >
+        <div class="col-12">
+          <label for="typeahead-basic">Origen</label>
+          <div
+            *ngIf="
+              flightsForm.get('origin')?.errors &&
+              (flightsForm.get('origin')?.dirty ||
+                flightsForm.get('origin')?.touched)
+            "
+          >
+            <label
+              for="password"
+              *ngIf="flightsForm.get('origin')?.hasError('required')"
+              class="fw-bold error"
+              >Este campo es requerido</label
+            >
+            <label
+              for="password"
+              *ngIf="flightsForm.get('origin')?.hasError('maxlength')"
+              class="fw-bold error"
+              >Supera la cantidad maxima de caracteres</label
+            >
+          </div>
+          <div class="input-group">
+            <input
+              id="typeahead-basic"
+              type="text"
+              class="form-control"
+              formControlName="origin"
+              (change)="changeToUpperCase('origin')"
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="typeahead-basic">Destino</label>
+          <div
+            *ngIf="
+              flightsForm.get('destination')?.errors &&
+              (flightsForm.get('destination')?.dirty ||
+                flightsForm.get('destination')?.touched)
+            "
+          >
+            <label
+              for="password"
+              *ngIf="flightsForm.get('destination')?.hasError('required')"
+              class="fw-bold error"
+              >Este campo es requerido</label
+            >
+            <label
+              for="password"
+              *ngIf="flightsForm.get('destination')?.hasError('maxlength')"
+              class="fw-bold error"
+              >Supera la cantidad maxima de caracteres</label
+            >
+          </div>
+          <div class="input-group">
+            <input
+              id="typeahead-basic"
+              type="text"
+              class="form-control"
+              formControlName="destination"
+              (change)="changeToUpperCase('destination')"
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="typeahead-basic">Cantidad de vuelos </label>
+          <div class="input-group">
+            <input
+              id="typeahead-basic"
+              type="text"
+              class="form-control"
+              formControlName="maxNumberOfFlights"
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="typeahead-basic">Buscar vuelos</label>
+          <div class="input-group">
+            <button type="submit" class="btn btn-outline-primary">
+              Enviar
+            </button>
+          </div>
+        </div>
+      </form>
+      <p *ngFor="let alert of alerts">
+        <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+      </p>
+    </div>
+    <ngb-accordion [closeOthers]="true" activeIds="static-1" *ngFor="let flight of actualFlights">
+      <ngb-panel id="static-1" [title]="'Origen: '+flight.origin+' <======> '+'Destino: '+flight.destination">
+        <ng-template ngbPanelContent>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Destino</th>
+                <th scope="col">Origen</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Compañía</th>
+                <th scope="col">Numero de vuelo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let singleFlight of flight.flights; index as i">
+                <td>{{singleFlight.destination}}</td>
+                <td>{{ singleFlight.destination }}</td>
+                <td>{{ singleFlight.price }}</td>
+                <td>{{ singleFlight.transport.flightCarrier }}</td>
+                <td>{{ singleFlight.transport.flightNumber }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+
+
+  </div>
+</div>

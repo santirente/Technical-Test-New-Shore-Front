@@ -1,0 +1,45 @@
+form{
+  margin-bottom: 50px;
+}
+.banner-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 20rem;
+  z-index: 100;
+  img {
+    width: 100%;
+  }
+}
+.content-element {
+  padding: 0 10% 10% 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+  bottom: 5rem;
+  &__button {
+    background-color: red !important;
+    color: white;
+    border-color: red;
+  }
+  &__button:active {
+    background-color: #fc7171 !important;
+    border-color: #fc7171;
+  }
+  &__button:hover {
+    background-color: #fc7171 !important;
+    border-color: #fc7171 !important;
+  }
+  &__container {
+    width: 55rem;
+    display: flex;
+    padding: 3% 4% 4% 4%;
+    align-items: center;
+  }
+}
+.error{
+  color: red;
+}
