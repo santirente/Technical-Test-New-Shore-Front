@@ -1,5 +1,12 @@
 # TechnicalTestNewShore
 
+# Para tener en cuenta
+
+1. Tenere instalado node
+2. Tener instalado Angular en su versión 14
+3. Correr el comando npm i 
+-Nota: Si el comando npm i no ejecuta correrctamente forzarlo con la adición --force
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
 
 ## Development server
